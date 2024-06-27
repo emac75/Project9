@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>   
+    <div class="container_login">
+        <img src="image/LOGO_SOMBRA.png" alt="Profile Picture" class="profile-pic-login">
+        <br>
+        <br>
+        <form id="loginForm">
+            <input type="email" id="LoginEmail" placeholder="Email">
+            <input type="password" id="LoginPassword" placeholder="Password">
+            <button class="button_login">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const SERVER = 'emac75.ddns.net'
+        const PORT = 5556;
+
+        document.getElementById('loginForm').addEventListener('submit', login);
+
+        async function login(event) {
+            event.preventDefault();
+            const email = document.getElementById('LoginEmail').value;
+            const password = document.getElementById('LoginPassword').value;
+        
+            try {
+                const response = await fetch(`http://${SERVER}:${PORT}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+        
+                const result = await response.json();
+        
+                if (response.ok) {
+                    sessionStorage.setItem('auth', "true");
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error logging in', error);
+            }
+        }
+    </script>
+</body>
+</html>

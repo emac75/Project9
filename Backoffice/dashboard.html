@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de administração</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="header">
+        <img src="image/LOGO_SOMBRA.png" alt="Profile Picture" class="profile-pic">
+        <h1>Painel de administração</h1>
+        <button class="logout-button" onclick="logout()"><i class="fa fa-sign-out"></i>Log out</button>
+    </div>
+    <div class="container">
+        <div id="userList"></div>
+    </div>
+
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit User</h2>
+            <form id="editForm">
+                <input type="text" id="editName" placeholder="Username">
+                <input type="email" id="editEmail" placeholder="Email">
+                <input type="text" id="editPassword" placeholder="Password">
+                <label for="editAdmin">Admin:</label>
+                <input type="checkbox" id="editAdmin">
+                <div class="modal-buttons">
+                    <button id="confirmButton">Confirm</button>
+                    <button id="cancelButton">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
